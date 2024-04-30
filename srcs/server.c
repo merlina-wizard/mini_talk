@@ -6,7 +6,7 @@
 /*   By: mamerlin <mamerlin@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:50:14 by mamerlin          #+#    #+#             */
-/*   Updated: 2024/04/30 17:07:21 by mamerlin         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:18:58 by mamerlin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	receive_signal(int i)
 {
-	static int				n = 0;
-	static unsigned char	c = 0;
+	static int				n;
+	static unsigned char	c;
 
 	c |= (i == SIGUSR1);
 	n++;
 	if (n == 8)
 	{
 		write(1, &c, 1);
-		if (!c)
+		if (c == '\0')
 			write(1, "\n", 1);
 		c = 0;
 		n = 0;
